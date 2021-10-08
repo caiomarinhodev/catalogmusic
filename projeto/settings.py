@@ -122,7 +122,7 @@ STATIC_URL = '/static/'
  
 import os
  
-INSTALLED_APPS += ['rest_framework', 'corsheaders', 'app','django_crud_generator']
+INSTALLED_APPS += ['rest_framework', 'corsheaders', 'app']
  
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
  
