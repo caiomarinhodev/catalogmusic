@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load form_utils %}
+{% block content %}
+    <h3 class="page-header">Visualizar</h3>
+
+    <div class="row">
+        <div class="col-md-4">
+            <p><strong>ID</strong></p>
+            <p>{{ music.id }}</p>
+        </div>
+        <div class="col-md-4">
+            <p><strong>Artista</strong></p>
+            <p>{{ music.artist.name }}</p>
+        </div>
+        <div class="col-md-4">
+            <p><strong>Titulo</strong></p>
+            <p>{{ music.title }}</p>
+        </div>
+        <div class="col-md-4">
+            <p><strong>Original Tone</strong></p>
+            <p>{{ music.original_tone }}</p>
+        </div>
+        <div class="col-md-4">
+            <p><strong>Band Tone</strong></p>
+            <p>{{ music.band_tone }}</p>
+        </div>
+        <div class="col-md-4">
+            <p><strong>BPM</strong></p>
+            <p>{{ music.bpm }} bpm; {{ music.bar_length }} </p>
+        </div>
+        <div class="col-md-4">
+            <p><strong>CIFRACLUB</strong></p>
+            <p><a href="{{ music.cifraclub_chords_url }}"
+                  target="_blank">{{ music.cifraclub_chords_url }}</a></p>
+        </div>
+        <div class="col-md-4">
+            <p><strong>Youtube URL</strong></p>
+            <p><a href="{{ music.youtube_url }}"
+                  target="_blank">{{ music.youtube_id }}</a></p>
+        </div>
+        <div class="col-md-4">
+            <p><strong>CRIADO EM</strong></p>
+            <p>{{ music.created_at }}</p>
+        </div>
+        <div class="col-md-4">
+            <p><strong>ATUALIZADO EM</strong></p>
+            <p>{{ music.published_at }}</p>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-xs-12">
+            <label>Description</label>
+            <div id="summernote">
+                {% if music.description %}
+                    {{ music.description|safe }}
+                {% else %}
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div id="actions" class="row">
+        <div class="col-md-12">
+            {% if update_object_reversed_url %}
+                <a class="btn btn-primary"
+                   href="{{ update_object_reversed_url }}">
+                    Editar
+                </a>
+            {% endif %}
+            <a href="{{ list_reversed_url }}" class="btn btn-default">Voltar</a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#model').addClass('active');
+            $('#model-list').addClass('active');
+            $('#summernote').summernote();
+        });
+    </script>
+{% endblock %}

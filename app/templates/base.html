@@ -1,0 +1,118 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Catalogo de Musicas</title>
+
+    <link href="{% static 'default/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'default/css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'default/css/sweetalert.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'default/css/datatables.min.css' %}"/>
+    <script src="{% static 'default/js/jquery.min.js' %}"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Catalogo de Musicas</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'ARTIST_list' %}">Inicio</a></li>
+                <li><a href="{% url 'ARTIST_list' %}">Artistas</a></li>
+                <li><a href="{% url 'MUSIC_list' %}">Musicas</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="main" class="container-fluid" style="margin-top: 50px">
+    {% block content %}
+        {% include 'loading.html' %}
+
+    {% endblock %}
+
+</div> <!-- /#main -->
+
+
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <script>
+                $(document).ready(function () {
+                    swal("Erro", "{{ message|safe }}", "error")
+                });
+            </script>
+        {% else %}
+            <script>
+                $(document).ready(function () {
+                    swal("Sucesso", "{{ message|safe }}", "success")
+                });
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<script src="{% static 'default/js/jquery.min.js' %}"></script>
+<script src="{% static 'default/js/bootstrap.min.js' %}"></script>
+
+<script type="text/javascript"
+        src="{% static 'default/js/sweetalert.min.js' %}"></script>
+
+<script type="text/javascript"
+        src="{% static 'default/js/datatables.min.js' %}"></script>
+
+<script type="text/javascript"
+        src="{% static 'default/js/moment-with-locales.min.js' %}"></script>
+
+
+<script type="text/javascript"
+        src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.3/js/bootstrap-tour.min.js"></script>
+
+<script src="{% static 'default/js/customTour.js' %}"></script>
+
+<script type="text/javascript">
+
+    var tour = null;
+
+    function init_tour() {
+        tour.restart();
+        tour.start(true);
+    }
+
+</script>
+
+
+<!-- include summernote css/js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js"
+        integrity="sha512-kZv5Zq4Cj/9aTpjyYFrt7CmyTUlvBday8NGjD9MxJyOY/f2UfRYluKsFzek26XWQaiAp7SZ0ekE7ooL9IYMM2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.css"
+      integrity="sha512-KbfxGgOkkFXdpDCVkrlTYYNXbF2TwlCecJjq1gK5B+BYwVk7DGbpYi4d4+Vulz9h+1wgzJMWqnyHQ+RDAlp8Dw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-pt-BR.min.js"
+        integrity="sha512-GTc/I/f0VltLNv7S8FRl7DhqVlkF3E639bhlMPBd+a+Ps+i/VXL5D+KPB49S8XtPoY47Y0ePm1YP/rmhJj3ULQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/plugin/specialchars/summernote-ext-specialchars.min.js"
+        integrity="sha512-TRnuSaNd27SDW2QJlGc5rog60pCD7PM5qNA4oEJf/oYRd2IQ7/ZDCZ7BIEhTbqKIJ0VjiMzJdObBdxj6dILsSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>
